@@ -8,6 +8,8 @@ public class Post {
     private String postBody;
     private int postAppUserId;
 
+    public Post() {}
+
     public Post(int postId, String postTitle, String postBody, int postAppUserId) {
         this.postId = postId;
         this.postTitle = postTitle;
