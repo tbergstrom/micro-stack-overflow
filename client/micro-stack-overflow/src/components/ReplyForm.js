@@ -103,7 +103,7 @@ const ReplyForm = () => {
           {errors.map(error => <li key={error}>{error}</li>)}
         </ul>
         <fieldset>
-          <label htmlFor="body-input">Title: </label>
+          <label htmlFor="body-input">REPLY: </label>
           <input id="body-input" value={section} onChange={(evt) => 
             setSection(evt.target.value)}/>
         </fieldset>
