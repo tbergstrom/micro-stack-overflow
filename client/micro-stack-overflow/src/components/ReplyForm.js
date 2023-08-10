@@ -104,8 +104,8 @@ const ReplyForm = () => {
         </ul>
         <fieldset>
           <label htmlFor="body-input">REPLY: </label>
-          <input id="body-input" value={section} onChange={(evt) => 
-            setSection(evt.target.value)}/>
+          <input id="body-input" value={body} onChange={(evt) => 
+            setBody(evt.target.value)}/>
         </fieldset>
 
         <button type="submit">Save!</button>

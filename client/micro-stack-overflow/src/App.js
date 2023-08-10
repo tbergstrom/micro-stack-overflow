@@ -3,11 +3,15 @@ import { useEffect, useState } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import './App.css';
 import Nav from './components/Nav';
-import Login from './components/login';
+import Login from './components/Login';
 import Home from './components/Home';
 
 import jwtDecode from 'jwt-decode';
 import AuthContext from './contexts/AuthContext';
+import PostList from './components/PostList';
+import PostForm from './components/PostForm';
+import PostView from './components/PostView';
+import ReplyForm from './components/ReplyForm';
 
 
 function App() {
@@ -48,7 +52,7 @@ function App() {
   }
 
   const loadPosts = () => {
-    fetch("http://localhost:8080/api/post")
+    fetch("http://localhost:8080/api/microstackoverflow/post")
     .then(response => response.json())
     .then(payload => setPosts(payload))
   }
@@ -71,11 +75,13 @@ function App() {
         <Routes>
           {/* always visible */}
           <Route path='/' element={<Home />}/>
-          <Route path="/postlist" element={<PostList />}/>
+          <Route path="/postlist" element={<PostList posts={posts} loadPosts={loadPosts}/>}/>
           <Route path='*' element={<p>Page Not Found</p>} />
+          <Route path="/postview/:id" element={PostView} posts={posts}/>
 
           {/* logged in only */}
           <Route path='/addpost' element={ user ? <PostForm /> : <Navigate to="/" /> }/>
+          <Route path="/addreply" element={ user ? <ReplyForm /> : <Navigate to="/" />} />
 
           {/* logged out only */}
           <Route path='/login' element={ user ? <Navigate to="/" /> : <Login /> }/>

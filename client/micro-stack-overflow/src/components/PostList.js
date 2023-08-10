@@ -1,4 +1,3 @@
-// import logo from '../overflow.svg';
 import PostTable from './PostTable.js';
 
 const PostList = (props)=> {
@@ -8,7 +7,7 @@ const PostList = (props)=> {
     // may want to consider useContext since there are layers below the PostTable
     
     const posts = props.posts;
-    const fetchPosts = props.fetchPosts;
+    const loadPosts = props.loadPosts;
 
     return (
         <div className="App">
@@ -32,7 +31,7 @@ const PostList = (props)=> {
                     No posts found. <br />
                     Do you want to add a post?
                 </div>
-                : <PostTable posts={posts} fetchPosts={props.fetchPosts} />
+                : <PostTable posts={posts} loadPosts={loadPosts} />
             }
 
             {/* The table below can be cut/ pasted into PostTable */}

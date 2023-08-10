@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams, Link } from "react-router-dom";
 
-const Form = (props)=> {
+const PostForm = (props)=> {
     const params = useParams();
     const navigate = useNavigate();
 
@@ -96,3 +96,5 @@ const Form = (props)=> {
         </form>
     )
 }
+
+export default PostForm;
