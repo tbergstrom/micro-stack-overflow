@@ -11,7 +11,6 @@ DROP TABLE IF EXISTS app_user;
 CREATE TABLE app_user (
     app_user_id INT PRIMARY KEY AUTO_INCREMENT,
     username VARCHAR(50) NOT NULL UNIQUE,
-    email VARCHAR(255) NOT NULL UNIQUE,
     password_hash VARCHAR(2048) NOT NULL,
     enabled BIT NOT NULL DEFAULT(1)
 );
@@ -62,10 +61,10 @@ INSERT INTO app_role (`name`) VALUES
     ('ADMIN');
 
 -- passwords are set to "P@ssw0rd!"
-INSERT INTO app_user (email, username, password_hash, enabled)
+INSERT INTO app_user (username, password_hash, enabled)
     VALUES
-    ('john@smith.com', 'Johnnyboy', '$2a$10$ntB7CsRKQzuLoKY3rfoAQen5nNyiC/U60wBsWnnYrtQQi8Z3IZzQa', 1),
-    ('sally@jones.com', 'Sally-Jo', '$2a$10$ntB7CsRKQzuLoKY3rfoAQen5nNyiC/U60wBsWnnYrtQQi8Z3IZzQa', 1);
+    ('Johnnyboy', '$2a$10$ntB7CsRKQzuLoKY3rfoAQen5nNyiC/U60wBsWnnYrtQQi8Z3IZzQa', 1),
+    ('Sally-Jo', '$2a$10$ntB7CsRKQzuLoKY3rfoAQen5nNyiC/U60wBsWnnYrtQQi8Z3IZzQa', 1);
 
 INSERT INTO app_user_role
     VALUES

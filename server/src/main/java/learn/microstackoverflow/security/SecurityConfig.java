@@ -32,13 +32,13 @@ public class SecurityConfig {
                 .antMatchers("/create_account").permitAll()
                 .antMatchers("/refresh_token").authenticated()
                 .antMatchers(HttpMethod.GET,
-                        "/api/solarpanel", "/api/solarpanel/*", "/api/solarpanel/section/*").permitAll()
+                        "/api/microstackoverflow", "/api/microstackoverflow/post", "/api/microstackoverflow/post/*").permitAll()
                 .antMatchers(HttpMethod.POST,
-                        "/api/solarpanel").hasAnyAuthority("USER", "ADMIN")
+                        "/api/microstackoverflow/post").hasAnyAuthority("USER", "ADMIN")
                 .antMatchers(HttpMethod.PUT,
-                        "/api/solarpanel/*").hasAnyAuthority("USER", "ADMIN")
+                        "/api/microstackoverflow/*").hasAnyAuthority("USER", "ADMIN")
                 .antMatchers(HttpMethod.DELETE,
-                        "/api/solarpanel/*").hasAnyAuthority("ADMIN")
+                        "/api/microstackoverflow/*").hasAnyAuthority("ADMIN")
                 .antMatchers("/**").denyAll()
                 .and()
                 .addFilter(new JwtRequestFilter(authenticationManager(authConfig), converter))
