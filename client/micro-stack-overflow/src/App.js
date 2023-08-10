@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import './App.css';
@@ -62,6 +63,7 @@ function App() {
   }, []);
 
   return (
+
     <AuthContext.Provider value={auth}>
       <BrowserRouter>
         <Nav />
