@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams, Link } from "react-router-dom";
 
-const Form = (props)=> {
+const PostForm = (props)=> {
     const params = useParams();
     const navigate = useNavigate();
 
@@ -82,12 +82,12 @@ const Form = (props)=> {
 
             <fieldset>
                 <label htmlFor="title-input">Title: </label>
-                <input id="title-input" value={setTitle} onChange={(evt) => setTitle(evt.target.value)}></input>
+                <input id="title-input" value={title} onChange={(evt) => setTitle(evt.target.value)}></input>
             </fieldset>
 
             <fieldset>
                 <label htmlFor="body-input">Body: </label>
-                <input id="body-input" value={setBody} onChange={(evt) => setBody(evt.target.value)}></input>
+                <input id="body-input" value={body} onChange={(evt) => setBody(evt.target.value)}></input>
             </fieldset>
 
             <button type="submit">Save!</button>
@@ -96,3 +96,5 @@ const Form = (props)=> {
         </form>
     )
 }
+
+export default PostForm;

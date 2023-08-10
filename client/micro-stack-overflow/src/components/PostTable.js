@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
 
 const PostTable = (props)=> {
+
+    console.log(props);
     return (
         <table>
             <thead>
@@ -14,12 +16,13 @@ const PostTable = (props)=> {
             </thead>
             <tbody>
                 {props.posts.map(post => (
-                    <tr key={post.post_id}>
-                        <td>{post.post_id}</td>
-                        <td>{post.title}</td>
-                        <td>{post.body}</td>
+                    <tr key={post.postId}>
+                        <td>{post.postId}</td>
+                        <td>{post.postTitle}</td>
+                        <td>{post.postBody}</td>
+                        <td>Some number</td>
                         <td>
-                            <button><Link to={`/post-view/${post.post_id}`}>View Post</Link></button>
+                            <button><Link to={`/postview/${post.postId}`}>View Post</Link></button>
                         </td>
                     </tr>
                 ))}

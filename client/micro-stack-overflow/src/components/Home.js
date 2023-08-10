@@ -1,3 +1,5 @@
+import logo from '../overflow.svg';
+
 function Home() {
     return (
     <div className="App">
