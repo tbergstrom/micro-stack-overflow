@@ -34,7 +34,7 @@ public class SecurityConfig {
                 .antMatchers(HttpMethod.GET,
                         "/api/microstackoverflow", "/api/microstackoverflow/post", "/api/microstackoverflow/post/*", "/api/microstackoverflow/reply", "/api/microstackoverflow/reply/*").permitAll()
                 .antMatchers(HttpMethod.POST,
-                        "/api/microstackoverflow/post").hasAnyAuthority("USER", "ADMIN")
+                        "/api/microstackoverflow/post", "/api/microstackoverflow/reply").hasAnyAuthority("USER", "ADMIN")
                 .antMatchers(HttpMethod.PUT,
                         "/api/microstackoverflow/*").hasAnyAuthority("USER", "ADMIN")
                 .antMatchers(HttpMethod.DELETE,

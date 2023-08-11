@@ -24,7 +24,7 @@ public class ReplyJdbcTemplateRepository implements ReplyRepository{
 
     @Override
     public List<Reply> findByPostId(int postId) {
-        final String sql = "select username, reply_id, body, post_id, author_id "
+        final String sql = "select reply_id, body, post_id, author_id, username "
                 + "from reply "
                 +"join app_user on author_id = app_user_id "
                 + "where post_id = ?";
