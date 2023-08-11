@@ -32,19 +32,19 @@ const PostView = (props) => {
         } else {
             navigate("/")
         }
-    }, []);
+    }, [props.posts, params.id]);
 
     return (
         <div className="App">
 
             {/* only logged in */}
-            { user && (
+            { user && post && (
                 <>
                 {/* User Name: */}
-                    <h1>{ post.postId }</h1>
+                    <h3>{ post.postTitle}</h3>
+                    <p>posted by {post.postAppUserId}</p>
                     <p>{ post.postBody }</p>
                     <br/>
-                    <p>Here</p>
                     <ReplyForm posts={posts}/>
                     <br/>
                     <ReplyList posts={posts}/>

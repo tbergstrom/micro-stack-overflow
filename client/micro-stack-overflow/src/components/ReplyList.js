@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import AuthContext from "../contexts/AuthContext";
 import { useParams } from "react-router-dom";
+import ReplyTable from "./ReplyTable";
 
 const ReplyList = (props)=> {
     
@@ -10,36 +11,29 @@ const ReplyList = (props)=> {
 
     const postId = props.postId;
 
-
-    // for post in posts
-    // if post.postId === params.id
-    // then let targetPost = post
-
-    // for reply in replies
-    // if reply.postId === targetPost.postId
-    // display reply
-
     const loadReplies = () => {
-        fetch(`http://localhost:8080/api/microstackoverflow/reply/${params.id}`) // placeholder URL
+        fetch(`http://localhost:8080/api/microstackoverflow/reply/${params.id}`)
         .then(response => response.json())
         .then(payload => setReplies(payload))
     };
-
-    console.log(replies);
     
-    useEffect(loadReplies, []);
+    useEffect(loadReplies, [params.id]);
 
     return (
-        // <p>Replies</p>
-        <table>
-            <tbody>
-                {replies.map(reply => <tr key={reply.id}>
-                    {/* TODO: Figure out how to get the username into this first spot instead of the reply_id */}
-                    <td>{reply.replyId}</td>
-                    <td>{reply.replyBody}</td>
-                </tr>)}
-            </tbody>
-        </table>
+        <>
+            <div className="App">
+
+            {replies.length == 0 ? 
+                <div className="alert alert-warning py-4"> 
+                    No replies found. <br />
+                    Do you want to add a reply?
+                </div>
+                : <ReplyTable replies={replies} loadReplies={loadReplies} />
+            }
+            </div>
+        </>
+
+        
   );
 }
 
