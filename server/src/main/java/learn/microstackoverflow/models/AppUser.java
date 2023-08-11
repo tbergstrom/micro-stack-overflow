@@ -12,10 +12,12 @@ import java.util.stream.Collectors;
 public class AppUser implements UserDetails {
 
     private int appUserId;
-    private final String username;
-    private final String password;
-    private final boolean enabled;
-    private final Collection<GrantedAuthority> authorities;
+    private  String username;
+    private  String password;
+    private  boolean enabled;
+    private  Collection<GrantedAuthority> authorities = List.of();
+
+    public AppUser() {}
 
     public AppUser(int appUserId, String username, String password, boolean enabled, List<String> roles) {
         this.appUserId = appUserId;
@@ -47,6 +49,10 @@ public class AppUser implements UserDetails {
     @Override
     public String getUsername() {
         return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     @Override
