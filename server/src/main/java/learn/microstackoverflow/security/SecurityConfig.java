@@ -32,7 +32,7 @@ public class SecurityConfig {
                 .antMatchers("/create_account").permitAll()
                 .antMatchers("/refresh_token").authenticated()
                 .antMatchers(HttpMethod.GET,
-                        "/api/microstackoverflow", "/api/microstackoverflow/post", "/api/microstackoverflow/post/*").permitAll()
+                        "/api/microstackoverflow", "/api/microstackoverflow/post", "/api/microstackoverflow/post/*", "/api/microstackoverflow/reply", "/api/microstackoverflow/reply/*").permitAll()
                 .antMatchers(HttpMethod.POST,
                         "/api/microstackoverflow/post").hasAnyAuthority("USER", "ADMIN")
                 .antMatchers(HttpMethod.PUT,

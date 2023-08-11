@@ -1,5 +1,7 @@
 package learn.microstackoverflow.models;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class Post {
@@ -7,6 +9,7 @@ public class Post {
     private String postTitle;
     private String postBody;
     private int postAppUserId;
+    private List<Reply> replies = new ArrayList<>();
 
     public Post() {}
 
@@ -47,6 +50,14 @@ public class Post {
 
     public void setPostAppUserId(int postAppUserId) {
         this.postAppUserId = postAppUserId;
+    }
+
+    public List<Reply> getReplies() {
+        return replies;
+    }
+
+    public void setReplies(List<Reply> replies) {
+        this.replies = replies;
     }
 
     @Override
