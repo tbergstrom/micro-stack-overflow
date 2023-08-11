@@ -1,9 +1,11 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams, Link } from "react-router-dom";
+import AuthContext from "../contexts/AuthContext";
 
 const PostForm = (props)=> {
     const params = useParams();
     const navigate = useNavigate();
+    const auth = useContext(AuthContext);
 
     const [errors, setErrors] = useState([]);
 
@@ -31,19 +33,19 @@ const PostForm = (props)=> {
         evt.preventDefault();
 
         const newPost = {
-            title: title,
-            body: body
+            postTitle: title,
+            postBody: body
         }
 
         let url = null;
         let method = null;
 
         if(params.id !== undefined) {
-            newPost.post_id = params.id;
-            url = `http://localhost:8080/api/microstack/${params.id}`;
+            newPost.post_id = params.id; // try camelCase
+            url = `http://localhost:8080/api/microstackoverflow/post/${params.id}`;
             method = "PUT"
         } else {
-            url = "http://localhost:8080/api/microstack"
+            url = "http://localhost:8080/api/microstackoverflow/post"
             method = "POST";
         }
 
@@ -52,15 +54,15 @@ const PostForm = (props)=> {
             headers: {
                 "Content-Type": "application/json",
                 Accept: "application/json",
-                Authorization: "Bearer " + "" // need token
+                Authorization: "Bearer " + auth.user.token
             },
             body: JSON.stringify(newPost)
         })
         .then(response => {
             if (response.ok) {
-                navigate("/list") // need route for "list"
+                navigate("/postlist") // need route for "list"
                 resetState();
-                props.fetchPosts(); // need fetchPosts passed from props OR context
+                props.loadPosts(); // need fetchPosts passed from props OR context
             } else {
                 response.json()
                 .then(errors => {

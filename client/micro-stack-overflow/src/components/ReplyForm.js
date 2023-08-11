@@ -20,24 +20,24 @@ const ReplyForm = () => {
       setBody("")
     }
 
-    useEffect(() => {
-      if (params.id !== undefined) {
+    // useEffect(() => {
+    //   if (params.id !== undefined) {
         
-        fetch(`http://localhost:8080/api/reply/${params.id}`)
-        .then(response => {
-          if (response.ok) {
-            response.json()
-            .then(reply => {
-              setBody(reply.body)
-            })
-          } else {
-            console.log(`Unexpected response status code: ${response.status}`);
-          }
-        })
-      } else {
-        resetState();
-      }
-    }, [params.id])
+    //     fetch(`http://localhost:8080/api/microstackoverflow/reply/${params.id}`)
+    //     .then(response => {
+    //       if (response.ok) {
+    //         response.json()
+    //         .then(reply => {
+    //           setBody(reply.body)
+    //         })
+    //       } else {
+    //         console.log(`Unexpected response status code: ${response.status}`);
+    //       }
+    //     })
+    //   } else {
+    //     resetState();
+    //   }
+    // }, [params.id])
 
     const handleSubmit = (evt) => {
       evt.preventDefault()
@@ -52,7 +52,7 @@ const ReplyForm = () => {
       if (params.id !== undefined) {
         //editing
         newReply.id = params.id
-        fetch(`http://localhost:8080/api/reply/${params.id}`, {
+        fetch(`http://localhost:8080/api/microstackoverflow/reply/${params.id}`, {
           method: "PUT",
           headers: {
             "Content-Type": "application/json",
@@ -74,7 +74,7 @@ const ReplyForm = () => {
         })
       } else {
         //adding
-        fetch("http://localhost:8080/api/reply", {
+        fetch("http://localhost:8080/api/microstackoverflow/reply", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -99,7 +99,6 @@ const ReplyForm = () => {
     
     return (
       <form onSubmit={handleSubmit}>
-        <p>Form</p>
         <ul>
           {errors.map(error => <li key={error}>{error}</li>)}
         </ul>

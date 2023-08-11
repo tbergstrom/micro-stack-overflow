@@ -77,10 +77,10 @@ function App() {
           <Route path='/' element={<Home />}/>
           <Route path="/postlist" element={<PostList posts={posts} loadPosts={loadPosts}/>}/>
           <Route path='*' element={<p>Page Not Found</p>} />
-          <Route path="/postview/:id" element={PostView} posts={posts}/>
+          <Route path="/postview/:id" element={<PostView posts={posts} />} />
 
           {/* logged in only */}
-          <Route path='/addpost' element={ user ? <PostForm /> : <Navigate to="/" /> }/>
+          <Route path='/addpost' element={ user ? <PostForm loadPosts={loadPosts}/> : <Navigate to="/" /> }/>
           <Route path="/addreply" element={ user ? <ReplyForm /> : <Navigate to="/" />} />
 
           {/* logged out only */}

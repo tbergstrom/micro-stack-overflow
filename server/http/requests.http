@@ -42,6 +42,7 @@ GET {{base_url}}/post HTTP/1.1
 
 ###
 
+
 # should return post with id 1, works
 GET {{base_url}}/post/1 HTTP/1.1
 # Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzb2xhci1mYXJtIiwic3ViIjoiSm9obm55Ym95IiwiYXV0aG9yaXRpZXMiOiJBRE1JTiIsImV4cCI6MTY5MTcyOTcwNX0.nLIECemMhp-md6GhObsh6Se1jI2ii1anly6j2WcEUH0
@@ -81,9 +82,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzb2xhci1mYXJtIiwic3ViIjoiS
 ###
 
 
-
-
-
+###
 
 
 
