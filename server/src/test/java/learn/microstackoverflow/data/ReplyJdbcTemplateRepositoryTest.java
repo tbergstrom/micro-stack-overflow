@@ -14,7 +14,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.NONE)
+@SpringBootTest()
 class ReplyJdbcTemplateRepositoryTest {
 
     @Autowired
@@ -43,11 +43,11 @@ class ReplyJdbcTemplateRepositoryTest {
 
     @Test
     void create() {
-        List<String> roles = new ArrayList<>();
-        AppUser appUser = new AppUser(1, "Johnnyboy", "$2a$10$ntB7CsRKQzuLoKY3rfoAQen5nNyiC/U60wBsWnnYrtQQi8Z3IZzQa", true, roles);
+        AppUser appUser = new AppUser();
+        appUser.setUsername("Johnnyboy");
         Reply reply = new Reply(0, "Test Reply Body", 1, 2, appUser);
 
         assertNotNull(repository.create(reply));
-        assertEquals(reply, repository.findById(4));
+        assertEquals(reply, repository.findById(6));
     }
 }
