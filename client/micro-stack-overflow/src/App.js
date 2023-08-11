@@ -12,6 +12,7 @@ import PostList from './components/PostList';
 import PostForm from './components/PostForm';
 import PostView from './components/PostView';
 import ReplyForm from './components/ReplyForm';
+import CreateAccount from './components/CreateAccount';
 
 
 function App() {
@@ -85,6 +86,7 @@ function App() {
 
           {/* logged out only */}
           <Route path='/login' element={ user ? <Navigate to="/" /> : <Login /> }/>
+          <Route path='/create_account' element={ user ? <Navigate to="/" /> : <CreateAccount /> }/>
         </Routes>
       </BrowserRouter>
     </AuthContext.Provider>
