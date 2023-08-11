@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 
 const PostTable = (props)=> {
 
-    console.log(props);
     return (
         <table>
             <thead>

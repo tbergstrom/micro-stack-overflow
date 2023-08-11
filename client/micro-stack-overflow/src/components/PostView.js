@@ -12,6 +12,9 @@ const PostView = (props) => {
 
     return (
         <div className="App">
+            {console.log(props.body)}
+            {console.log(auth.user)}
+            {console.log(props.app_user_id)}
             {/* only logged in */}
             { user && (
                 <>
@@ -19,6 +22,7 @@ const PostView = (props) => {
                     <h1>{ props.app_user_id }</h1>
                     <p>{ props.body }</p>
                     <br/>
+                    <p>Here</p>
                     <ReplyForm />
                     <br/>
                     <ReplyList />
