@@ -1,9 +1,20 @@
+import { useParams } from 'react-router-dom';
 import PostTable from './PostTable.js';
+import { useState } from 'react';
 
 const PostList = (props)=> {
 
     const posts = props.posts;
     const loadPosts = props.loadPosts;
+    const params = useParams();
+
+    const [replies, setReplies] = useState([]);
+
+    const loadReplies = () => {
+        fetch(`http://localhost:8080/api/microstackoverflow/reply/${params.id}`)
+        .then(response => response.json())
+        .then(payload => setReplies(payload))
+    };
 
     return (
         <div className="App">

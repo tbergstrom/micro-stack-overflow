@@ -9,15 +9,13 @@ const ReplyList = (props)=> {
     const auth = useContext(AuthContext);
     const params = useParams();
 
-    const postId = props.postId;
-
     const loadReplies = () => {
         fetch(`http://localhost:8080/api/microstackoverflow/reply/${params.id}`)
         .then(response => response.json())
         .then(payload => setReplies(payload))
     };
     
-    useEffect(loadReplies, [params.id]);
+    useEffect(loadReplies, [params.id, props.repliesCounter]);
 
     return (
         <>
