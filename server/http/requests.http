@@ -44,8 +44,7 @@ GET {{base_url}}/post HTTP/1.1
 
 
 # should return post with id 1, works
-GET {{base_url}}/post/1 HTTP/1.1
-# Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzb2xhci1mYXJtIiwic3ViIjoiSm9obm55Ym95IiwiYXV0aG9yaXRpZXMiOiJBRE1JTiIsImV4cCI6MTY5MTcyOTcwNX0.nLIECemMhp-md6GhObsh6Se1jI2ii1anly6j2WcEUH0
+GET {{base_url}}/post/4 HTTP/1.1
 
 
 ###
@@ -53,7 +52,7 @@ GET {{base_url}}/post/1 HTTP/1.1
 # should make new post, works
 POST {{base_url}}/post HTTP/1.1
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzb2xhci1mYXJtIiwic3ViIjoiSm9obm55Ym95IiwiYXV0aG9yaXRpZXMiOiJBRE1JTiIsImV4cCI6MTY5MTc2OTY1OH0.BydSho8uItWGH6Njg6VlfdiQJKyF7IDxDtk_mhKusN4
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzb2xhci1mYXJtIiwic3ViIjoiSm9obm55Ym95IiwiYXV0aG9yaXRpZXMiOiJBRE1JTiIsImV4cCI6MTY5MTc4NjEwMH0.TlhB9wwM93fgyJPVysP4SKShIn708bqvaVpd2rKSp9w
 
 {
   "postTitle": "Bird Bearings",
@@ -65,17 +64,17 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzb2xhci1mYXJtIiwic3ViIjoiS
 
 #should get replies by postId
 
-GET {{base_url}}/reply/1 HTTP/1.1
+GET {{base_url}}/reply/4 HTTP/1.1
 
 ###
 # should make new reply
 POST {{base_url}}/reply HTTP/1.1
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzb2xhci1mYXJtIiwic3ViIjoiSm9obm55Ym95IiwiYXV0aG9yaXRpZXMiOiJBRE1JTiIsImV4cCI6MTY5MTc3OTAwM30.84T70UYZ4H4mzmD89g40NmKNem15YV0LHx4bDLXpmmE
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzb2xhci1mYXJtIiwic3ViIjoiSm9obm55Ym95IiwiYXV0aG9yaXRpZXMiOiJBRE1JTiIsImV4cCI6MTY5MTc4NjEwMH0.TlhB9wwM93fgyJPVysP4SKShIn708bqvaVpd2rKSp9w
 
 {
   "replyBody": "Here are my many thoughts",
-  "postId": 1,
+  "postId": 4,
   "postAppUserId": 1
 }
 

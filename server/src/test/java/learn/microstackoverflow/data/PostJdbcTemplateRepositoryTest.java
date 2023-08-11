@@ -1,5 +1,6 @@
 package learn.microstackoverflow.data;
 
+import learn.microstackoverflow.models.AppUser;
 import learn.microstackoverflow.models.Post;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -40,7 +41,11 @@ class PostJdbcTemplateRepositoryTest {
 
     @Test
     void findById() {
-        Post post = new Post(1, "Test Title", "Test Body", 2);
+
+        AppUser appUser = new AppUser();
+        appUser.setUsername("SallyJo");
+
+        Post post = new Post(1, "Test Title", "Test Body", 2, appUser);
 
         Post actual = repository.findById(1);
         assertEquals(post.getPostTitle(), actual.getPostTitle());
@@ -49,7 +54,10 @@ class PostJdbcTemplateRepositoryTest {
 
     @Test
     void create() {
-        Post post = new Post(0, "Test Create Title", "Test Create Body", 2);
+        AppUser appUser = new AppUser();
+        appUser.setUsername("SallyJo");
+
+        Post post = new Post(0, "Test Create Title", "Test Create Body", 2, appUser);
 
         assertNotNull(repository.create(post));
         assertEquals(post, repository.findById(4));
