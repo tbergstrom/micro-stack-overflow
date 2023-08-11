@@ -14,7 +14,7 @@ public class ReplyMapper implements RowMapper<Reply> {
         reply.setReplyId(resultset.getInt("reply_id"));
         reply.setReplyBody(resultset.getString("body"));
         reply.setPostId(resultset.getInt("post_id"));
-        reply.setPostId(resultset.getInt("author_id"));
+        reply.setPostAppUserId(resultset.getInt("author_id"));
 
         return reply;
     }

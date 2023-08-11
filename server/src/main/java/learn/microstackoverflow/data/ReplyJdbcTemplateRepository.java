@@ -22,11 +22,11 @@ public class ReplyJdbcTemplateRepository implements ReplyRepository{
         this.jdbcTemplate = jdbcTemplate;
     }
 
-//    TODO think about this findbypostid .query
     @Override
     public List<Reply> findByPostId(int postId) {
-        final String sql = "select reply_id, body, post_id, author_id "
+        final String sql = "select username, reply_id, body, post_id, author_id "
                 + "from reply "
+                +"join app_user on author_id = app_user_id "
                 + "where post_id = ?";
 
         return jdbcTemplate.query(sql, new ReplyMapper(), postId);
