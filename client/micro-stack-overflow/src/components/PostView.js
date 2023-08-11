@@ -1,4 +1,4 @@
-import { Link, useParams } from "react-router-dom"
+import { Link, useNavigate, useParams } from "react-router-dom"
 import AuthContext from "../contexts/AuthContext"
 import { useContext, useEffect, useState } from "react"
 import ReplyForm from "./ReplyForm";
@@ -12,16 +12,27 @@ const PostView = (props) => {
     const auth = useContext(AuthContext);
     const user = auth.user;
     const params = useParams();
+    const navigate = useNavigate();
 
     const posts = props.posts;
 
-    const loadPost = () => {
-        fetch(`http://localhost:8080/api/microstackoverflow/post/${params.id}`) // placeholder URL
-        .then(response => response.json())
-        .then(payload => setPost(payload))
-    };
+    // const loadPost = () => {
+    //     fetch(`http://localhost:8080/api/microstackoverflow/post/${params.id}`) // placeholder URL
+    //     .then(response => response.json())
+    //     .then(payload => setPost(payload))
+    // };
 
-    useEffect(loadPost, []);
+    // useEffect(loadPosts, []);
+
+
+    useEffect(()=> {
+        const targetPost = props.posts.find(post => post.postId === parseInt(params.id));
+        if(targetPost !== undefined || targetPost !== null)  {
+            setPost({...targetPost})
+        } else {
+            navigate("/")
+        }
+    }, []);
 
     return (
         <div className="App">
@@ -34,7 +45,7 @@ const PostView = (props) => {
                     <p>{ post.postBody }</p>
                     <br/>
                     <p>Here</p>
-                    <ReplyForm />
+                    <ReplyForm posts={posts}/>
                     <br/>
                     <ReplyList posts={posts}/>
                 </>

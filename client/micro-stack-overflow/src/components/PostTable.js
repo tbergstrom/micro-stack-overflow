@@ -16,7 +16,7 @@ const PostTable = (props)=> {
             <tbody>
                 {props.posts.map(post => (
                     <tr key={post.postId}>
-                        <td>{post.postId}</td>
+                        <td>{post.postAppUserId}</td>
                         <td>{post.postTitle}</td>
                         <td>{post.postBody}</td>
                         <td>Some number</td>
