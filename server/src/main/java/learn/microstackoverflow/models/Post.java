@@ -9,15 +9,17 @@ public class Post {
     private String postTitle;
     private String postBody;
     private int postAppUserId;
+    private AppUser appUser;
     private List<Reply> replies = new ArrayList<>();
 
     public Post() {}
 
-    public Post(int postId, String postTitle, String postBody, int postAppUserId) {
+    public Post(int postId, String postTitle, String postBody, int postAppUserId, AppUser appUser) {
         this.postId = postId;
         this.postTitle = postTitle;
         this.postBody = postBody;
         this.postAppUserId = postAppUserId;
+        this.appUser = appUser;
     }
 
     public int getPostId() {
@@ -58,6 +60,14 @@ public class Post {
 
     public void setReplies(List<Reply> replies) {
         this.replies = replies;
+    }
+
+    public AppUser getAppUser() {
+        return appUser;
+    }
+
+    public void setAppUser(AppUser appUser) {
+        this.appUser = appUser;
     }
 
     @Override

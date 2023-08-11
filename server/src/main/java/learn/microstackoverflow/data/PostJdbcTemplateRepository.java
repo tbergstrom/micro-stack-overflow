@@ -23,15 +23,17 @@ public class PostJdbcTemplateRepository implements PostRepository{
 
     @Override
     public List<Post> findAll() {
-        final String sql = "select post_id, title, body, author_id "
-                + "from post";
+        final String sql = "select post_id, title, body, author_id, username "
+                + "from post "
+                + "join app_user on author_id = app_user_id; ";
         return jdbcTemplate.query(sql, new PostMapper());
     }
 
     @Override
     public Post findById(int postId) {
-        final String sql = "select post_id, title, body, author_id "
+        final String sql = "select post_id, title, body, author_id, username "
                 + "from post "
+                + "join app_user on author_id = app_user_id "
                 + "where post_id = ?";
 
         Post post = jdbcTemplate.query(sql, new PostMapper(), postId).stream()
