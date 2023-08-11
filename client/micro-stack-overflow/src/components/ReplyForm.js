@@ -20,81 +20,65 @@ const ReplyForm = () => {
       setBody("")
     }
 
-    // useEffect(() => {
-    //   if (params.id !== undefined) {
-        
-    //     fetch(`http://localhost:8080/api/microstackoverflow/reply/${params.id}`)
-    //     .then(response => {
-    //       if (response.ok) {
-    //         response.json()
-    //         .then(reply => {
-    //           setBody(reply.body)
-    //         })
-    //       } else {
-    //         console.log(`Unexpected response status code: ${response.status}`);
-    //       }
-    //     })
-    //   } else {
-    //     resetState();
-    //   }
-    // }, [params.id])
-
     const handleSubmit = (evt) => {
       evt.preventDefault()
       const newReply = {
-        body: body
+        replyBody: body,
+        postId: params.id
       }
 
       let url = null;
       let init = null;
 
       // TODO can we keep our code dryer?
-      if (params.id !== undefined) {
-        //editing
-        newReply.id = params.id
-        fetch(`http://localhost:8080/api/microstackoverflow/reply/${params.id}`, {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-            Accept: "application/json",
-            Authorization: "Bearer " + auth.user.token
-          },
-          body: JSON.stringify(newReply)
-        })
-        .then(response => {
-          if (response.ok) {
-            navigate("/replylist")
-            resetState()
-          } else {
-            response.json()
-            .then(errors => {
-              setErrors(errors)
-            })
-          }
-        })
-      } else {
-        //adding
-        fetch("http://localhost:8080/api/microstackoverflow/reply", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Accept: "application/json",
-            Authorization: "Bearer " + auth.user.token
-          },
-          body: JSON.stringify(newReply)
-        })
-        .then(response => {
-          if (response.ok) {
-            navigate("/list")
-            resetState()
-          } else {
-            response.json()
-            .then(errors => {
-              setErrors(errors)
-            })
-          }
-        })
-      }
+      // if (params.id !== undefined) {
+      //   //editing
+      //   newReply.id = params.id
+      //   fetch(`http://localhost:8080/api/microstackoverflow/reply/${params.id}`, {
+      //     method: "PUT",
+      //     headers: {
+      //       "Content-Type": "application/json",
+      //       Accept: "application/json",
+      //       Authorization: "Bearer " + auth.user.token
+      //     },
+      //     body: JSON.stringify(newReply)
+      //   })
+      //   .then(response => {
+      //     if (response.ok) {
+      //       navigate("/replylist")
+      //       resetState()
+      //     } else {
+      //       response.json()
+      //       .then(errors => {
+      //         setErrors(errors)
+      //       })
+      //     }
+      //   })
+      // } 
+      
+      
+      //adding
+      fetch("http://localhost:8080/api/microstackoverflow/reply", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+          Authorization: "Bearer " + auth.user.token
+        },
+        body: JSON.stringify(newReply)
+      })
+      .then(response => {
+        if (response.ok) {
+          navigate(`/postview/${params.id}`)
+          resetState()
+        } else {
+          response.json()
+          .then(errors => {
+            setErrors(errors)
+          })
+        }
+      })
+      
     }
     
     return (
@@ -109,7 +93,7 @@ const ReplyForm = () => {
         </fieldset>
 
         <button type="submit">Save!</button>
-        <Link to="/list">Cancel</Link>
+        <Link to="/postlist">Cancel</Link>
       </form>
     )
 }

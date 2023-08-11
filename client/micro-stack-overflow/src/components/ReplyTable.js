@@ -1,26 +1,23 @@
 import { Link } from "react-router-dom";
 
 const ReplyTable = (props)=> {
+
+    const replies = props.replies;
+    const loadReplies = props.loadReplies;
+
     return (
-        <table>
-            <thead>
-                <tr>
-                {/* we could pull the name of the user here */}
-                    <th>Author(id)</th>
-                    <th>Body</th>
-                    <th>&nbsp;</th>
-                </tr>
-            </thead>
-            <tbody>
-                {props.replies.map(reply => (
-                    <tr key={reply.reply_id}>
-                        {/* user name would be cooler than user id */}
-                        <td>{reply.reply_id}</td>
-                        <td>{reply.body}</td>
-                    </tr>
-                ))}
-            </tbody>
-        </table>
+        <>
+            <>{replies.length} {replies.length !== 1 ? <>replies</> : <>reply</>}</>
+            <table>
+                <tbody>
+                    {replies.map(reply => <tr key={reply.replyId}>
+                        {/* TODO: Figure out how to get the username into this first spot instead of the reply_id */}
+                        <td>{reply.appUser.username}: </td>
+                        <td>{reply.replyBody}</td>
+                    </tr>)}
+                </tbody>
+            </table>
+        </>
     )
 }
 
