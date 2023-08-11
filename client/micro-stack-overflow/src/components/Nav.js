@@ -28,7 +28,7 @@ const Nav = () => {
                 <>
                     <Link to='/login'>LOGIN</Link>
                     {" "}
-                    <Link to='/login'>CREATE ACCOUNT</Link>
+                    <Link to='/create_account'>CREATE ACCOUNT</Link>
                 </>
             )}
         </nav>

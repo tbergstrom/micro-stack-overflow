@@ -57,7 +57,7 @@ const PostView = (props) => {
                     <p>You must be logged in to see this</p>
                     <Link to='/login'>LOGIN</Link>
                     {" "}
-                    <Link to='/login'>CREATE ACCOUNT</Link>
+                    <Link to='/create_account'>CREATE ACCOUNT</Link>
                 </>
             )}
         </div>

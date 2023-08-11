@@ -1,6 +1,22 @@
+
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
+
 
 const PostTable = (props)=> {
+    // const [author, setAuthor] = useState([]);
+    // const params = useParams();
+
+    // const loadAuthor = () => {
+    //     fetch(`http://localhost:8080/api/microstackoverflow/post/${params.id}`) // placeholder URL
+    //     .then(response => response.json())
+    //     .then(payload => setAuthor(payload))
+    // };
+
+    // useEffect(loadAuthor, []);
+
+    // console.log(author);
 
     return (
         <table>
@@ -19,7 +35,7 @@ const PostTable = (props)=> {
                         <td>{post.postAppUserId}</td>
                         <td>{post.postTitle}</td>
                         <td>{post.postBody}</td>
-                        <td>Some number</td>
+                        <td>{post.replies.length}</td>
                         <td>
                             <button><Link to={`/postview/${post.postId}`}>View Post</Link></button>
                         </td>
