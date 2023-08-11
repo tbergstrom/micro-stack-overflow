@@ -7,14 +7,17 @@ public class Reply {
     private String replyBody;
     private int postId;
     private int postAppUserId;
+    private AppUser appUser;
 
     public Reply() {}
 
-    public Reply(int replyId, String replyBody, int postId, int postAppUserId) {
+    public Reply(int replyId, String replyBody, int postId, int postAppUserId, AppUser appUser) {
         this.replyId = replyId;
         this.replyBody = replyBody;
         this.postId = postId;
         this.postAppUserId = postAppUserId;
+        this.appUser = appUser;
+
     }
 
     public int getReplyId() {
@@ -47,6 +50,14 @@ public class Reply {
 
     public void setPostAppUserId(int postAppUserId) {
         this.postAppUserId = postAppUserId;
+    }
+
+    public AppUser getAppUser() {
+        return appUser;
+    }
+
+    public void setAppUser(AppUser appUser) {
+        this.appUser = appUser;
     }
 
     @Override
