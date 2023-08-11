@@ -1,31 +1,42 @@
-import { Link } from "react-router-dom"
+import { Link, useParams } from "react-router-dom"
 import AuthContext from "../contexts/AuthContext"
-import { useContext } from "react"
+import { useContext, useEffect, useState } from "react"
 import ReplyForm from "./ReplyForm";
 import ReplyList from "./ReplyList";
 
 // I think once the "View Post" button is pressed (presumably this happens in PostTable), we need to pass in that singular post as a prop to here
 
 const PostView = (props) => {
+
+    const [post, setPost] = useState(null);
     const auth = useContext(AuthContext);
     const user = auth.user;
+    const params = useParams();
+
+    const posts = props.posts;
+
+    const loadPost = () => {
+        fetch(`http://localhost:8080/api/microstackoverflow/post/${params.id}`) // placeholder URL
+        .then(response => response.json())
+        .then(payload => setPost(payload))
+    };
+
+    useEffect(loadPost, []);
 
     return (
         <div className="App">
-            {console.log(props.body)}
-            {console.log(auth.user)}
-            {console.log(props.app_user_id)}
+
             {/* only logged in */}
             { user && (
                 <>
                 {/* User Name: */}
-                    <h1>{ props.app_user_id }</h1>
-                    <p>{ props.body }</p>
+                    <h1>{ post.postId }</h1>
+                    <p>{ post.postBody }</p>
                     <br/>
                     <p>Here</p>
                     <ReplyForm />
                     <br/>
-                    <ReplyList />
+                    <ReplyList posts={posts}/>
                 </>
             )}
 
