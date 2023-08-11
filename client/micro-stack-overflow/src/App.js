@@ -80,7 +80,7 @@ function App() {
           <Route path="/postview/:id" element={PostView} posts={posts}/>
 
           {/* logged in only */}
-          <Route path='/addpost' element={ user ? <PostForm /> : <Navigate to="/" /> }/>
+          <Route path='/addpost' element={ user ? <PostForm loadPosts={loadPosts}/> : <Navigate to="/" /> }/>
           <Route path="/addreply" element={ user ? <ReplyForm /> : <Navigate to="/" />} />
 
           {/* logged out only */}
