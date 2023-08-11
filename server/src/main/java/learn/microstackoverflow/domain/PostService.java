@@ -4,6 +4,7 @@ package learn.microstackoverflow.domain;
 import learn.microstackoverflow.data.PostRepository;
 import learn.microstackoverflow.data.ReplyRepository;
 import learn.microstackoverflow.models.Post;
+import learn.microstackoverflow.models.Reply;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
@@ -23,8 +24,8 @@ public class PostService {
 
     public Post findById(int postId) {
         Post post = repository.findById(postId);
-        //List<Reply> replies = replyRepository.findByPostId(postId);
-        //post.setReplies(replies)
+        List<Reply> replies = replyRepository.findByPostId(postId);
+        post.setReplies(replies);
         return post;
     }
 
@@ -35,7 +36,7 @@ public class PostService {
         }
 
         if (post.getPostId() != 0) {
-            result.addErrorMessage("postId cannet be set for 'create' operation in service", ResultType.INVALID);
+            result.addErrorMessage("postId cannot be set for 'create' operation in service", ResultType.INVALID);
             return result;
         }
 
@@ -53,11 +54,6 @@ public class PostService {
 
         if (post.getPostTitle() == null || post.getPostTitle().isBlank()) {
             result.addErrorMessage("post title is required in service", ResultType.INVALID);
-            System.out.println(post.getPostTitle());
-            System.out.println(post.getPostBody());
-            System.out.println(post.getPostAppUserId());
-
-
             return result;
         }
 

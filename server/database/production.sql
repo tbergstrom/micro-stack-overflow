@@ -84,5 +84,5 @@ INSERT INTO reply (body, post_id, author_id)
     ('Hoowee', 1, 1);
 
 SELECT * FROM app_user;
-SELECT * FROM reply;
-SELECT * FROM post;
+SELECT * FROM reply where post_id = 1;
+SELECT * FROM post where post_id = 1;
