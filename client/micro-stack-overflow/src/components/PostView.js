@@ -4,10 +4,10 @@ import { useContext, useEffect, useState } from "react"
 import ReplyForm from "./ReplyForm";
 import ReplyList from "./ReplyList";
 
-// I think once the "View Post" button is pressed (presumably this happens in PostTable), we need to pass in that singular post as a prop to here
-
 const PostView = (props) => {
 
+    const [replies, setReplies] = useState([]);
+    const [repliesCounter, setRepliesCounter] = useState(0);
     const [post, setPost] = useState(null);
     const auth = useContext(AuthContext);
     const user = auth.user;
@@ -16,14 +16,11 @@ const PostView = (props) => {
 
     const posts = props.posts;
 
-    // const loadPost = () => {
-    //     fetch(`http://localhost:8080/api/microstackoverflow/post/${params.id}`) // placeholder URL
-    //     .then(response => response.json())
-    //     .then(payload => setPost(payload))
-    // };
-
-    // useEffect(loadPosts, []);
-
+    const loadReplies = () => {
+        fetch(`http://localhost:8080/api/microstackoverflow/reply/${params.id}`)
+        .then(response => response.json())
+        .then(payload => setReplies(payload))
+    };
 
     useEffect(()=> {
         const targetPost = props.posts.find(post => post.postId === parseInt(params.id));
@@ -42,12 +39,12 @@ const PostView = (props) => {
                 <>
                 {/* User Name: */}
                     <h3>{ post.postTitle}</h3>
-                    <p>posted by {post.postAppUserId}</p>
+                    <p>posted by {post.appUser && post.appUser.username}</p>
                     <p>{ post.postBody }</p>
                     <br/>
-                    <ReplyForm posts={posts}/>
+                    <ReplyForm posts={posts} postId={post.postId} loadReplies={loadReplies} setRepliesCounter={setRepliesCounter}/>
                     <br/>
-                    <ReplyList posts={posts}/>
+                    <ReplyList posts={posts} repliesCounter={repliesCounter} loadReplies={loadReplies}/>
                 </>
             )}
 

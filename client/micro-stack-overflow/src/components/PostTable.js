@@ -24,7 +24,6 @@ const PostTable = (props)=> {
                 <tr>
                     <th>Author</th>
                     <th>Title</th>
-                    <th>Body</th>
                     <th>Number of Replies?</th>
                     <th>&nbsp;</th>
                 </tr>
@@ -32,9 +31,8 @@ const PostTable = (props)=> {
             <tbody>
                 {props.posts.map(post => (
                     <tr key={post.postId}>
-                        <td>{post.postAppUserId}</td>
+                        <td>{post.appUser.username}</td>
                         <td>{post.postTitle}</td>
-                        <td>{post.postBody}</td>
                         <td>{post.replies.length}</td>
                         <td>
                             <button><Link to={`/postview/${post.postId}`}>View Post</Link></button>

@@ -2,10 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams, Link } from "react-router-dom";
 import AuthContext from "../contexts/AuthContext";
 
-const ReplyForm = () => {
-    // const sectionInputState = useState("")
-    // const sectionInputGetter = sectionInputState[0]
-    // const sectionInputSetter = sectionInputState[1]
+const ReplyForm = (props) => {
 
     const params = useParams()
     const navigate = useNavigate()
@@ -69,8 +66,10 @@ const ReplyForm = () => {
       })
       .then(response => {
         if (response.ok) {
-          navigate(`/postview/${params.id}`)
-          resetState()
+          navigate(`/postview/${params.id}`);
+          resetState();
+          props.loadReplies();
+          props.setRepliesCounter(counter => counter+ 1);
         } else {
           response.json()
           .then(errors => {

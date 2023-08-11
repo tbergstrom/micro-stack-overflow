@@ -11,7 +11,6 @@ const ReplyTable = (props)=> {
             <table>
                 <tbody>
                     {replies.map(reply => <tr key={reply.replyId}>
-                        {/* TODO: Figure out how to get the username into this first spot instead of the reply_id */}
                         <td>{reply.appUser.username}: </td>
                         <td>{reply.replyBody}</td>
                     </tr>)}
