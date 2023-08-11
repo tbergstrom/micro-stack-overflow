@@ -43,7 +43,7 @@ GET {{base_url}}/post HTTP/1.1
 ###
 
 # should return post with id 1, worked thursday evening, now gives 500 error. no idea what changed
-GET {{base_url}}/post/1 HTTP/1.1
+GET {{base_url}}/post/2 HTTP/1.1
 # Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzb2xhci1mYXJtIiwic3ViIjoiSm9obm55Ym95IiwiYXV0aG9yaXRpZXMiOiJBRE1JTiIsImV4cCI6MTY5MTcyOTcwNX0.nLIECemMhp-md6GhObsh6Se1jI2ii1anly6j2WcEUH0
 
 
@@ -52,7 +52,7 @@ GET {{base_url}}/post/1 HTTP/1.1
 # should make new post, works
 POST {{base_url}}/post HTTP/1.1
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzb2xhci1mYXJtIiwic3ViIjoiSm9obm55Ym95IiwiYXV0aG9yaXRpZXMiOiJBRE1JTiIsImV4cCI6MTY5MTcyOTcwNX0.nLIECemMhp-md6GhObsh6Se1jI2ii1anly6j2WcEUH0
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzb2xhci1mYXJtIiwic3ViIjoiSm9obm55Ym95IiwiYXV0aG9yaXRpZXMiOiJBRE1JTiIsImV4cCI6MTY5MTc2Mzk3NX0.8NkDlQL5wc4bhBVhiNW1M80lsA_uBKte7-f6iW18O2k
 
 {
   "postTitle": "Bird Bearings",
@@ -64,7 +64,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzb2xhci1mYXJtIiwic3ViIjoiS
 
 #should get replies by postId
 
-GET {{base_url}}/reply/1 HTTP/1.1
+GET {{base_url}}/reply/3 HTTP/1.1
 
 
 
