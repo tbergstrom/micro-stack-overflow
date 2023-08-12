@@ -13,32 +13,42 @@ export default function CreateAccount() {
 
   const auth = useContext(AuthContext)
 
+  // const validatePassword = (password)=> {
+  //   return /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,20}$/.test(password);
+  // }
+
+  const handleSubmit = async (event) => {
+      event.preventDefault();
+      
+      // if(!validatePassword(password)) {
+      //   const invalidPasswordMessage = ["Password must be between 8-20 characters, include a special character, a number, and a capital letter."]
+      //   setErrors(invalidPasswordMessage);
+      // }
+
+      const response = await fetch("http://localhost:8080/create_account", {
+          method: "POST",
+          headers: {
+              "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+              username,
+              password,
+          }),
+      });
   
-    const handleSubmit = async (event) => {
-        event.preventDefault();
-        // NEW
-        const response = await fetch("http://localhost:8080/create_account", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                username,
-                password,
-            }),
-        });
-    
-        // This code executes if the request is successful
-        if (response.status === 201) {
-            navigate("/login");
-        } else if (response.status === 403) {
-            setErrors(["Account Creation failed."]);
-        } else {
-            console.log(response.status);
-            console.log(response.statusText);
-            setErrors(["Unknown error."]);
-        }
-    };
+      // This code executes if the request is successful
+      if (response.status === 201) {
+          navigate("/");
+      } else if (response.status === 403) {
+          setErrors(["Account Creation failed."]);
+      } else {
+          const errorMessages = await response.json();
+          // const errorMessageFull = errorMessage[0]
+          console.log(errorMessages[0]);
+
+          setErrors(errorMessages);
+      }
+  };
 
   return (
     <div>
